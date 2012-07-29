@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils.translation import ugettext, ugettext_lazy as _
+from feed.views import getAllFeeds
 from mongoengine.django.auth import User
 
 class EmailAuthBackend(object):
@@ -101,7 +102,10 @@ class UserLoginForm(forms.Form):
 
 
 def home(request):
-    return render_to_response('home.html', context_instance=RequestContext(request))
+    try:
+        return getAllFeeds(request)
+    except:
+        return render_to_response('home.html', context_instance=RequestContext(request))
 
 def signup(request):    
     if request.method == 'POST':

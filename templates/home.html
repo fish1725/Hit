@@ -21,6 +21,11 @@
 		<a href="{% url signup %}">Sign up</a>
 		<a href="{% url login %}">Log in</a>
 		{{ user.username }}
+		{{ feeds|length }}
+		{% for feed in feeds %}
+		  {{ feed.content.num_participants }}
+		{% endfor%}
+		<a href="{% url plan %}" data-role="button">Plan</a>
 	</div><!-- /content -->
 
 	<div data-role="footer" data-position="fixed">

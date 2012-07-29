@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', 'Hit.views.home', name='home'),
     url(r'^signup/$', 'Hit.views.signup', name='signup'),
     url(r'^login/$', 'Hit.views.login', name='login'),
+    url(r'^plan/$', 'activity.views.plan', name='plan'),
     # url(r'^Hit/', include('Hit.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
