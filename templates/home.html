@@ -1,37 +1,56 @@
-<!DOCTYPE html> 
-<html> 
-	<head> 
-	<title>Page Title</title> 
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-</head> 
-<body> 
-
-<div data-role="page" data-url="/">
+{% extends "base.html" %} {% block javascript %}
+<script type="text/javascript">
+	(function(Hit) {
+		Hit.Model.Place = Backbone.Model.extend({});
+		Hit.Collection.Places = Backbone.Collection.extend({
+			model : Hit.Model.Place,
+			url : "/p/search"
+		});
+		var places = new Hit.Collection.Places();
+		places.fetch({data:{q:"1"}});
+	})(Hit)
+</script>
+{% endblock %} {% block page %}
+<div data-role="page" data-url="/" id="page_home">
 
 	<div data-role="header">
 		<h1>Page Title</h1>
-	</div><!-- /header -->
+	</div>
+	<!-- /header -->
 
-	<div data-role="content">	
-		<a href="{% url signup %}">Sign up</a>
-		<a href="{% url login %}">Log in</a>
-		{{ user.username }}
-		{{ feeds|length }}
-		{% for feed in feeds %}
-		  {{ feed.content.num_participants }}
-		{% endfor%}
-		<a href="{% url plan %}" data-role="button">Plan</a>
-	</div><!-- /content -->
+	<div data-role="content">
+		<a href="{% url signup %}">Sign up</a> <a href="{% url login %}">Log
+			in</a> {{ user.username }} {{ feeds|length }}
+		<form action="{% url search %}" method="GET"
+			onsubmit="return q.value!=''">
+			<input type="search" name="q" value="" data-mini="true" /> <input
+				type="submit" data-theme="b" name="submit" value="Search"
+				data-mini="true" data-inline="true" />
+
+		</form>
+		<form action="{% url plan %}" method="POST">
+			<input type="text" name="title" value="" data-mini="true"
+				placeholder="标题" /> <input type="text" name="start_time"
+				data-role='datebox'
+				data-options='{"mode":"calbox", "useNewStyle":true}'
+				onclick="$(this).datebox('open');" value="" data-mini="true" /> <input
+				type="text" name="place" value="" data-mini="true" placeholder="地点" />
+			<input type="button" data-theme="b" name="submit" value="Search"
+				data-mini="true" data-inline="true" />
+			<div class="ui-body-c ui-shadow ui-corner-all">
+				<div id='map'></div>
+			</div>
+			<textarea name="detail" data-mini="true" placeholder="详情"></textarea>
+			<input type="submit" value="Plan" data-inline="true" data-mini="true" />
+		</form>
+	</div>
+	<!-- /content -->
 
 	<div data-role="footer" data-position="fixed">
 		<h4>Page Footer</h4>
-	</div><!-- /footer -->
-</div><!-- /page -->
+	</div>
+	<!-- /footer -->
+</div>
+<!-- /page -->
 
-</body>
-</html>
+{% endblock %}

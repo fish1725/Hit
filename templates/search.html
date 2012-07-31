@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% block page %}
+<div data-role="page" id="page_search">
+
+	<div data-role="header" data-position="inline">
+		<h1>Log in</h1>
+		<a href="#" data-rel="back" class="ui-btn-left">Cancel</a>
+	</div>
+
+	<div data-role="content" data-theme="c" data-inset="true">
+		{{ flag }}{{ places|length }}
+		<div>
+			<ul>
+				{% for p in places %}
+				<li>
+				<a href="{% url place-profile p.id %}">{{ p.name }} | 
+				{{ p.address }} | {{ p.location }} | {{ p.types }}</a>
+				</li> 
+				{% endfor %}
+			</ul>
+
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+<!-- /page -->
+
+{% endblock %}

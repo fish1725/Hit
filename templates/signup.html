@@ -1,50 +1,34 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}{% block page %}
+<div data-role="page" id="page_signup">
 
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Multi-page template</title>
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script
-	src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-</head>
-
-
-<body>
-
-	<div data-role="page" id="page_signup" data-theme="c">
-
-		<div data-role="header" data-position="inline" data-nobackbtn="true">
-			<h1>Sign up</h1>
-			<a href="#" class="ui-btn-right">Cancel</a>
-		</div>
-
-		<div data-role="content" data-theme="c" data-inset="true">
-
-			<form action="{% url signup %}" method="post" data-transition="pop">
-				{% csrf_token %}
-				<fieldset  class="ui-hide-label">
-
-					{{ form.as_p }}
-					<button type="submit" data-inline="true" data-theme="b"
-						name="submit" value="signup">Join</button>
-
-					<p>
-						Already have an account? <a href="{% url login %}">Login</a>
-					</p>
-
-				</fieldset>
-
-			</form>
-
-		</div>
-		<div data-role="footer" data-position="fixed">
-			<h4>Page Footer</h4>
-		</div>
+	<div data-role="header">
+		<h1>Sign up</h1>
+		<a href="#" data-rel="back" class="ui-btn-left">Cancel</a>
 	</div>
 
-</body>
-</html>
+	<div data-role="content">
+
+		<form action="{% url signup %}" method="post" data-transition="pop">
+			{% csrf_token %}
+			<fieldset class="ui-hide-label">
+
+				{{ form.as_p }}
+				<button type="submit" data-inline="true" data-theme="b"
+					name="submit" value="signup">Join</button>
+
+				<p>
+					Already have an account? <a href="{% url login %}">Login</a>
+				</p>
+
+			</fieldset>
+
+		</form>
+
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+<!-- /page -->
+
+{% endblock %}

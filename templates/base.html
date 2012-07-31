@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" />
+<link rel="stylesheet"
+	href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
+<!--[if lte IE 8]>
+         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
+     <![endif]-->
+<link rel="stylesheet" href="/static/css/Hit/main.css" />
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+
+<script
+	src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+<script
+	src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+<script
+	src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+<script src="/static/js/backbone/underscore-min.js"></script>
+<script src="/static/js/backbone/backbone-min.js"></script>
+<script src="/static/js/Hit/main.js"></script>
+{% block javascript %}{% endblock %}
+</head>
+<body>
+{% block page %}
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>Page Title</h1>
+		</div>
+		<!-- /header -->
+
+		<div data-role="content"></div>
+		<!-- /content -->
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Page Footer</h4>
+		</div>
+		<!-- /footer -->
+	</div>
+	<!-- /page -->
+{% endblock %}
+</body>
+</html>
